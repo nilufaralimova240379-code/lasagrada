@@ -1,0 +1,732 @@
+/* ==========================================================================
+   1. CSS VARIABLES & RESET
+   ========================================================================== */
+:root {
+    --bg-dark: #0a0a0a;
+    --bg-card: #141414;
+    --bg-light: #faf9f6;
+    --bg-beige: #f4efe6;
+    --text-dark: #121212;
+    --text-muted: #7e7e7e;
+    --text-light: #f5f5f5;
+    --accent-gold: #d4af37;
+    --accent-gold-hover: #f1c40f;
+    --border-color: rgba(212, 175, 55, 0.2);
+    --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    --font-serif: 'Cormorant Garamond', Georgia, serif;
+    --font-sans: 'Montserrat', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-sans);
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: var(--transition);
+}
+
+ul {
+    list-style: none;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+/* ==========================================================================
+   2. NAVIGATION BAR
+   ========================================================================== */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 25px 8%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    background: rgba(10, 10, 10, 0.75);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid var(--border-color);
+    transition: var(--transition);
+}
+
+.navbar.scrolled {
+    padding: 15px 8%;
+    background: rgba(10, 10, 10, 0.95);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.logo {
+    font-family: var(--font-serif);
+    font-size: 2.2rem;
+    font-weight: 700;
+    letter-spacing: 4px;
+    color: #fff;
+    text-transform: uppercase;
+}
+
+.logo span {
+    color: var(--accent-gold);
+}
+
+.nav-links {
+    display: flex;
+    gap: 35px;
+    align-items: center;
+}
+
+.nav-links a {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 500;
+    color: #ccc;
+    position: relative;
+    padding-bottom: 5px;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: var(--accent-gold);
+    transition: var(--transition);
+}
+
+.nav-links a:hover {
+    color: var(--accent-gold);
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+.hamburger {
+    display: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: var(--accent-gold);
+}
+
+/* Mobile Menu */
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 80%;
+    max-width: 400px;
+    height: 100vh;
+    background-color: #111;
+    z-index: 1001;
+    padding: 80px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    transition: var(--transition);
+    border-left: 1px solid var(--border-color);
+}
+
+.mobile-menu.active {
+    right: 0;
+}
+
+.mobile-menu a {
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #fff;
+}
+
+.close-menu {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    font-size: 1.8rem;
+    color: var(--accent-gold);
+    cursor: pointer;
+}
+
+/* ==========================================================================
+   3. HERO SECTION
+   ========================================================================== */
+.hero {
+    height: 100vh;
+    width: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 20px;
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)),
+        url('https://lasagrada.com.tr/wp-content/uploads/2024/05/lasagrada-slider-1.jpg') center/cover no-repeat;
+}
+
+.hero-content {
+    max-width: 900px;
+    z-index: 2;
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+.hero-title {
+    font-family: var(--font-serif);
+    font-size: 5rem;
+    font-weight: 700;
+    letter-spacing: 8px;
+    margin-bottom: 15px;
+    color: #ffffff;
+    text-transform: uppercase;
+}
+
+.hero-subtitle {
+    font-family: var(--font-serif);
+    font-size: 2rem;
+    font-style: italic;
+    color: var(--accent-gold);
+    margin-bottom: 20px;
+    font-weight: 400;
+}
+
+.hero-description {
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+    color: #ddd;
+    margin-bottom: 40px;
+    font-weight: 300;
+}
+
+.btn-group {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 16px 38px;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-weight: 600;
+    cursor: pointer;
+    border: 1px solid var(--accent-gold);
+    transition: var(--transition);
+    display: inline-block;
+}
+
+.btn-primary {
+    background-color: var(--accent-gold);
+    color: #000;
+}
+
+.btn-primary:hover {
+    background-color: transparent;
+    color: var(--accent-gold);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: #fff;
+    border-color: #fff;
+}
+
+.btn-secondary:hover {
+    border-color: var(--accent-gold);
+    color: var(--accent-gold);
+}
+
+/* ==========================================================================
+   4. ABOUT SECTION
+   ========================================================================== */
+.section {
+    padding: 120px 8%;
+}
+
+.about {
+    background-color: var(--bg-dark);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+}
+
+.about-image {
+    position: relative;
+}
+
+.about-image img {
+    width: 100%;
+    height: 600px;
+    object-fit: cover;
+    border-radius: 4px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
+}
+
+.about-image::after {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    width: 100%;
+    height: 100%;
+    border: 1px solid var(--accent-gold);
+    z-index: -1;
+}
+
+.section-header {
+    margin-bottom: 30px;
+}
+
+.section-subtitle {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    color: var(--accent-gold);
+    margin-bottom: 10px;
+    display: block;
+}
+
+.section-title {
+    font-family: var(--font-serif);
+    font-size: 3rem;
+    font-weight: 600;
+    color: #fff;
+    line-height: 1.2;
+}
+
+.about-text p {
+    color: #aaa;
+    font-size: 1.05rem;
+    margin-bottom: 25px;
+    font-weight: 300;
+    line-height: 1.8;
+}
+
+/* ==========================================================================
+   5. COLLECTION SECTION
+   ========================================================================== */
+.collections {
+    background-color: #0f0f0f;
+}
+
+.grid-4 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.card {
+    background-color: var(--bg-card);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: var(--transition);
+    overflow: hidden;
+    position: relative;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    border-color: var(--accent-gold);
+}
+
+.card-img {
+    height: 380px;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.card:hover .card-img img {
+    transform: scale(1.08);
+}
+
+.card-body {
+    padding: 25px;
+    text-align: center;
+}
+
+.card-title {
+    font-family: var(--font-serif);
+    font-size: 1.6rem;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.card-desc {
+    font-size: 0.9rem;
+    color: #888;
+    margin-bottom: 20px;
+    font-weight: 300;
+}
+
+.card-btn {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--accent-gold);
+    font-weight: 600;
+    cursor: pointer;
+    background: none;
+    border: none;
+    border-bottom: 1px solid var(--accent-gold);
+    padding-bottom: 3px;
+}
+
+/* ==========================================================================
+   6. ADVANTAGES SECTION
+   ========================================================================== */
+.advantages {
+    background-color: var(--bg-dark);
+    text-align: center;
+}
+
+.advantages .section-header {
+    max-width: 600px;
+    margin: 0 auto 60px auto;
+}
+
+.adv-card {
+    padding: 40px 20px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: var(--transition);
+}
+
+.adv-card:hover {
+    border-color: var(--accent-gold);
+    background: rgba(212, 175, 55, 0.03);
+}
+
+.adv-icon {
+    font-size: 2.5rem;
+    color: var(--accent-gold);
+    margin-bottom: 20px;
+}
+
+.adv-title {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    color: #fff;
+    margin-bottom: 15px;
+}
+
+.adv-desc {
+    font-size: 0.9rem;
+    color: #888;
+    font-weight: 300;
+}
+
+/* ==========================================================================
+   7. VALUES BANNER
+   ========================================================================== */
+.values-banner {
+    padding: 80px 8%;
+    background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)),
+        url('https://lasagrada.com.tr/wp-content/uploads/2024/05/lasagrada-slider-2.jpg') center/cover fixed no-repeat;
+    text-align: center;
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.values-list {
+    font-family: var(--font-serif);
+    font-size: 2.5rem;
+    color: var(--accent-gold);
+    letter-spacing: 4px;
+    margin-bottom: 20px;
+}
+
+.values-text {
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: 1.2rem;
+    color: #eee;
+    font-weight: 300;
+}
+
+/* ==========================================================================
+   8. GALLERY SECTION
+   ========================================================================== */
+.gallery {
+    background-color: #0f0f0f;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin-top: 40px;
+}
+
+.gallery-item {
+    height: 400px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s ease;
+}
+
+.gallery-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: var(--transition);
+}
+
+.gallery-overlay i {
+    font-size: 2rem;
+    color: var(--accent-gold);
+}
+
+.gallery-item:hover img {
+    transform: scale(1.1);
+}
+
+.gallery-item:hover .gallery-overlay {
+    opacity: 1;
+}
+
+/* ==========================================================================
+   9. SOCIAL & CONTACT
+   ========================================================================== */
+.social-section {
+    background-color: var(--bg-dark);
+    text-align: center;
+    padding: 80px 8%;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.social-btn {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    color: #fff;
+    transition: var(--transition);
+}
+
+.social-btn:hover {
+    background-color: var(--accent-gold);
+    color: #000;
+    transform: translateY(-5px);
+}
+
+.contact-section {
+    background-color: var(--bg-card);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.contact-item i {
+    font-size: 1.3rem;
+    color: var(--accent-gold);
+    margin-top: 5px;
+}
+
+.contact-item h4 {
+    font-size: 1rem;
+    color: #fff;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.contact-item p {
+    color: #888;
+    font-size: 0.95rem;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #fff;
+    font-family: var(--font-sans);
+    outline: none;
+    transition: var(--transition);
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: var(--accent-gold);
+}
+
+/* ==========================================================================
+   10. FOOTER & LIGHTBOX
+   ========================================================================== */
+footer {
+    background-color: #050505;
+    padding: 60px 8% 30px 8%;
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.footer-logo {
+    font-family: var(--font-serif);
+    font-size: 2.5rem;
+    font-weight: 700;
+    letter-spacing: 6px;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.footer-slogan {
+    font-family: var(--font-serif);
+    font-size: 1.2rem;
+    font-style: italic;
+    color: var(--accent-gold);
+    margin-bottom: 30px;
+}
+
+.copyright {
+    color: #555;
+    font-size: 0.85rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding-top: 25px;
+    margin-top: 30px;
+}
+
+/* Lightbox Modal */
+.lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 2000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.lightbox.active {
+    display: flex;
+}
+
+.lightbox img {
+    max-width: 85%;
+    max-height: 85vh;
+    border: 2px solid var(--accent-gold);
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    font-size: 2.5rem;
+    color: #fff;
+    cursor: pointer;
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 992px) {
+
+    .about,
+    .contact-section {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-title {
+        font-size: 3.5rem;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    .hamburger {
+        display: block;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-title {
+        font-size: 2.5rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.4rem;
+    }
+
+    .section-title {
+        font-size: 2.2rem;
+    }
+
+    .btn {
+        width: 100%;
+    }
+}
